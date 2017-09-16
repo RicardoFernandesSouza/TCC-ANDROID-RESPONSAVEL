@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/pid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/btn_login_bg"
+        android:visibility="gone" />
+
+    <!-- Name Label -->
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="21dip"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/hood"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="21dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/zip_code"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="21dip"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="21dip"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="17dip"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/begin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="17dip"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/end"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="17dip"
+        android:textStyle="bold" />
+
+</LinearLayout>
