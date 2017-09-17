@@ -17,7 +17,7 @@ public class Tab3Dados extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tab3dados, container, false);
-        Button buttonDadosResp = (Button)rootView.findViewById(R.id.btn_responsavel);
+        Button buttonDadosResp = (Button)rootView.findViewById(R.id.btn_cliente);
         Button buttonDadosResi = (Button)rootView.findViewById(R.id.btn_residencia);
         buttonDadosResp.setOnClickListener(new View.OnClickListener()
         {
@@ -25,8 +25,8 @@ public class Tab3Dados extends Fragment {
             public void onClick(View v){
                 switch(v.getId()){
 
-                    case R.id.btn_responsavel:
-                        Intent intent1 = new Intent(rootView.getContext(), DadosResponsavel.class);
+                    case R.id.btn_cliente:
+                        Intent intent1 = new Intent(rootView.getContext(), DadosCliente.class);
                         rootView.getContext().startActivity(intent1);
                         break;
                 }

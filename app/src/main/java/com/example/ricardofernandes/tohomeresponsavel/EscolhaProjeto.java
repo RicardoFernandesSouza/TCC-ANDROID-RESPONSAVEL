@@ -32,12 +32,12 @@ import java.util.List;
 public class EscolhaProjeto extends ListActivity {
 
     String pid;
-    String respid;
+    String clienteid;
     private ProgressDialog pDialog;
     JSONParser jParser = new JSONParser();
     ArrayList<HashMap<String, String>> productsList;
    // private static String url_products_details = "http://172.16.128.186//android_connect/get_residencias.php";
-    private static String url_products_details = "http://192.168.0.14//android_connect/get_residencias.php";
+    private static String url_products_details = "http://192.168.0.49//android_connect/get_residencias_resp.php";
 
 
     // JSON Node names
@@ -51,7 +51,7 @@ public class EscolhaProjeto extends ListActivity {
     private static final String TAG_STATE = "state";
     private static final String TAG_BEGIN = "begindate";
     private static final String TAG_END = "enddate";
-    private static final String TAG_RESPID = "idresp";
+    private static final String TAG_CLIENTEID = "idcliente";
 
 
     JSONArray residencia = null;
@@ -116,7 +116,7 @@ public class EscolhaProjeto extends ListActivity {
                 // getting values from selected ListItem
                 String pid = ((TextView) view.findViewById(R.id.pid)).getText()
                         .toString();
-                String idresp = ((TextView) view.findViewById(R.id.idresp)).getText()
+                String idcliente = ((TextView) view.findViewById(R.id.idcliente)).getText()
                         .toString();
 
                 // Starting new intent
@@ -124,9 +124,9 @@ public class EscolhaProjeto extends ListActivity {
                         MainActivity.class);
                 // sending pid to next activity
                 in.putExtra(TAG_PID, pid);
-                in.putExtra(TAG_RESPID, respid);
+                in.putExtra(TAG_CLIENTEID, clienteid);
                 db.deleteResi();
-                db.addResidencia(pid,null,null,null,null,null,null,null,idresp,null);
+                db.addResidencia(pid,null,null,null,null,null,null,null,idcliente,null);
 
 
                 // starting new activity and expecting some response back
@@ -171,7 +171,7 @@ public class EscolhaProjeto extends ListActivity {
         protected String doInBackground(String... args) {
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("idcliente", pid));
+            params.add(new BasicNameValuePair("idresp", pid));
             // getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(url_products_details, "GET", params);
 
@@ -200,7 +200,7 @@ public class EscolhaProjeto extends ListActivity {
                         String state = c.getString(TAG_STATE);
                         String begindate = c.getString(TAG_BEGIN);
                         String enddate = c.getString(TAG_END);
-                        String idresp = c.getString(TAG_RESPID);
+                        String idcliente = c.getString(TAG_CLIENTEID);
 
 
                         // creating new HashMap
@@ -215,7 +215,7 @@ public class EscolhaProjeto extends ListActivity {
                         map.put(TAG_STATE, state);
                         map.put(TAG_BEGIN, begindate);
                         map.put(TAG_END, enddate);
-                        map.put(TAG_RESPID, idresp);
+                        map.put(TAG_CLIENTEID, idcliente);
 
                         //db.addResidencia(id,address,hood,zip_code,city,state,begindate,enddate,null,null);
 
@@ -254,8 +254,8 @@ public class EscolhaProjeto extends ListActivity {
                     ListAdapter adapter = new SimpleAdapter(
                             EscolhaProjeto.this, productsList,
                             R.layout.list_residencia, new String[] { TAG_PID,
-                            TAG_ADDRESS,TAG_HOOD,TAG_ZIP,TAG_CITY,TAG_STATE,TAG_BEGIN,TAG_END,TAG_RESPID},
-                            new int[] { R.id.pid, R.id.address,R.id.hood,R.id.zip_code,R.id.city,R.id.state,R.id.begin,R.id.end,R.id.idresp});
+                            TAG_ADDRESS,TAG_HOOD,TAG_ZIP,TAG_CITY,TAG_STATE,TAG_BEGIN,TAG_END,TAG_CLIENTEID},
+                            new int[] { R.id.pid, R.id.address,R.id.hood,R.id.zip_code,R.id.city,R.id.state,R.id.begin,R.id.end,R.id.idcliente});
                     // updating listview
                     setListAdapter(adapter);
                 }

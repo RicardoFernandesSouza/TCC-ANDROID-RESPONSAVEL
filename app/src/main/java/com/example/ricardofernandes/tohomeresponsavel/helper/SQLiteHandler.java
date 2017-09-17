@@ -38,11 +38,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_USER_NAME = "username";
     private static final String KEY_USER_PASSWORD = "password";
 
-    private static final String KEY_RESP_ID = "id";
-    private static final String KEY_RESP_NAME = "name";
-    private static final String KEY_RESP_EMAIL = "email";
-    private static final String KEY_RESP_USER_NAME = "username";
-    private static final String KEY_RESP_USER_PASSWORD = "password";
+    private static final String KEY_CLIENTE_ID = "id";
+    private static final String KEY_CLIENTE_NAME = "name";
+    private static final String KEY_CLIENTE_EMAIL = "email";
+    private static final String KEY_CLIENTE_USER_NAME = "username";
+    private static final String KEY_CLIENTE_USER_PASSWORD = "password";
 
     private static final String KEY_RESI_ID = "id";
     private static final String KEY_RESI_ENDERECO = "address";
@@ -62,7 +62,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_ETAPA_STATUS = "status";
 
 
-
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -70,15 +69,15 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_CLIENTE + "("
+        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_RESPONSAVEL + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"  + KEY_NAME + " TEXT,"
                 + KEY_USER_NAME + " TEXT," + KEY_USER_PASSWORD + " TEXT," +  KEY_EMAIL + " TEXT" +  ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
-        String CREATE_RESP_TABLE = "CREATE TABLE " + TABLE_RESPONSAVEL + "("
-                + KEY_RESP_ID + " INTEGER PRIMARY KEY,"  + KEY_RESP_NAME + " TEXT,"
-                + KEY_RESP_USER_NAME + " TEXT," + KEY_RESP_USER_PASSWORD + " TEXT," +  KEY_RESP_EMAIL + " TEXT" +  ")";
-        db.execSQL(CREATE_RESP_TABLE);
+        String CREATE_CLIENTE_TABLE = "CREATE TABLE " + TABLE_CLIENTE + "("
+                + KEY_CLIENTE_ID + " INTEGER PRIMARY KEY,"  + KEY_CLIENTE_NAME + " TEXT,"
+                + KEY_CLIENTE_USER_NAME + " TEXT," + KEY_CLIENTE_USER_PASSWORD + " TEXT," +  KEY_CLIENTE_EMAIL + " TEXT" +  ")";
+        db.execSQL(CREATE_CLIENTE_TABLE);
 
         String CREATE_TABLE_RESIDENCIA = "CREATE TABLE " + TABLE_RESIDENCIA + "("
                 + KEY_RESI_ID + " INTEGER PRIMARY KEY,"  + KEY_RESI_ENDERECO + " TEXT,"
@@ -88,11 +87,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " INTEGER" +  ")";
         db.execSQL(CREATE_TABLE_RESIDENCIA);
 
-        String CREATE_TABLE_ETAPAS = "CREATE TABLE " + TABLE_ETAPAS + "("
-                + KEY_ETAPA_ID + " INTEGER PRIMARY KEY,"  + KEY_ETAPA_RESI_ID + " TEXT,"
-                + KEY_ETAPA_NAME + " TEXT," + KEY_ETAPA_DETAILS + " TEXT,"
-                + KEY_ETAPA_STATUS + " TEXT," +  ")";
-        db.execSQL(CREATE_TABLE_ETAPAS);
+
 
         //AQUI PASSAMOS TODAS AS OUTRAS TABELAS QUE TEM NO BANCO
 
@@ -104,7 +99,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLIENTE);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESPONSAVEL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESPONSAVEL);
 //        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESIDENCIA);
 
 
@@ -128,7 +123,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
         // Inserting Row
-        long uid = db.insert(TABLE_CLIENTE, null, values);
+        long uid = db.insert(TABLE_RESPONSAVEL, null, values);
        // values.put(KEY_ID, id); // Email
 
         db.close(); // Closing database connection
@@ -138,20 +133,20 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
-    public void addResp(String id, String name, String username,String password, String email) {
+    public void addCliente(String id, String name, String username,String password, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
-        values.put(KEY_RESP_NAME, name); // Name
-        values.put(KEY_RESP_USER_NAME, username); // NOME DE USUÁRIO
-        values.put(KEY_RESP_USER_PASSWORD, password); // SENHA
-        values.put(KEY_RESP_EMAIL, email); // Email
+        values.put(KEY_CLIENTE_NAME, name); // Name
+        values.put(KEY_CLIENTE_USER_NAME, username); // NOME DE USUÁRIO
+        values.put(KEY_CLIENTE_USER_PASSWORD, password); // SENHA
+        values.put(KEY_CLIENTE_EMAIL, email); // Email
 
-        long uidresp = db.insert(TABLE_RESPONSAVEL, null, values);
-        values.put(KEY_RESP_ID, id); // Email
+        long uidcliente = db.insert(TABLE_CLIENTE, null, values);
+        values.put(KEY_CLIENTE_ID, id); // Email
 
-        Log.d(TAG, "New user inserted into sqlite: " + uidresp);
+        Log.d(TAG, "New user inserted into sqlite: " + uidcliente);
 
     }
 
@@ -170,16 +165,16 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put (KEY_RESI_DATA_INICIO,begindate);
         values.put (KEY_RESI_DATA_FIM,enddate);
         values.put (KEY_RESI_ID_CLIENTE,idcliente);
-        values.put (KEY_RESI_ID_RESPONSAVEL,idresp);
+        values.put (KEY_RESI_ID_RESPONSAVEL,idcliente);
 
         // Inserting Row
         long uidresi = db.insert(TABLE_RESIDENCIA, null, values);
         values.put(KEY_RESI_ID, id); // Email
-        values.put(KEY_RESI_ID_RESPONSAVEL,idresp);
+        values.put(KEY_RESI_ID_RESPONSAVEL,idcliente);
 
         db.close(); // Closing database connection
 
-        Log.d(TAG, "New RESIDENCIA inserted into sqlite: " + uidresi + " and Responsável: " + idresp);
+        Log.d(TAG, "New RESIDENCIA inserted into sqlite: " + uidresi + " and Cliente: " + idcliente);
 
     }
 
@@ -210,7 +205,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * */
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM " + TABLE_CLIENTE;
+        String selectQuery = "SELECT * FROM " + TABLE_RESPONSAVEL;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -234,9 +229,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Getting user data from database
      * */
-    public HashMap<String, String> getUserDetailsResp() {
+    public HashMap<String, String> getUserDetailsCliente() {
         HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM " + TABLE_RESPONSAVEL;
+        String selectQuery = "SELECT * FROM " + TABLE_CLIENTE;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -314,9 +309,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         // Delete All Rows
         db.delete(TABLE_CLIENTE, null, null);
-     //   db.delete(TABLE_RESPONSAVEL, null, null);
+        db.delete(TABLE_RESPONSAVEL, null, null);
         db.delete(TABLE_RESIDENCIA, null, null);
-        db.delete(TABLE_ETAPAS, null, null);
+      //  db.delete(TABLE_ETAPAS, null, null);
 
         db.close();
 

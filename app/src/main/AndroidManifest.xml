@@ -54,7 +54,7 @@
             android:label="@string/app_name"
             android:launchMode="singleTop" />
         <activity
-            android:name=".DadosResponsavel"
+            android:name=".DadosCliente"
             android:label="@string/app_name"
             android:launchMode="singleTop" />
         <activity

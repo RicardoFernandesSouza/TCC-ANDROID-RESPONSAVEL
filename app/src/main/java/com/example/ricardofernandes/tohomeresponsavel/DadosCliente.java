@@ -30,7 +30,7 @@ import java.util.List;
  * Created by RicardoFernandes on 25/04/2017.
  */
 
-public class DadosResponsavel extends ListActivity {
+public class DadosCliente extends ListActivity {
     String pid;
 
     // Progress Dialog
@@ -43,13 +43,15 @@ public class DadosResponsavel extends ListActivity {
 
     // url to get all products list
     //private static String url_all_products = "http://172.16.128.186/android_connect/get_all_products.php";
-    private static String url_all_products = "http://172.16.128.186//android_connect/get_responsavel.php";
+    //private static String url_all_products = "http://172.16.128.186//android_connect/get_cliente.php";
+     private static String url_all_products = "http://192.168.0.49//android_connect/get_cliente.php";
+
 
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     // private static final String TAG_PRODUCTS = "products";
-    private static final String TAG_RESPONSAVEL = "resp";
+    private static final String TAG_CLIENTE = "cliente";
     private static final String TAG_PID = "id";
     private static final String TAG_NAME = "name";
     private static final String TAG_EMAIL = "email";
@@ -65,13 +67,13 @@ public class DadosResponsavel extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dados_responsavel);
+        setContentView(R.layout.activity_dados_cliente);
         db = new SQLiteHandler(getApplicationContext());
         session = new SessionManager(getApplicationContext());
 
         HashMap<String, String> user = db.getUserDetailsResi();
-        String userIdResp = user.get("idresp");
-        pid = userIdResp;
+        String userIdCliente = user.get("idresp");
+        pid = userIdCliente;
 
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
@@ -133,7 +135,7 @@ public class DadosResponsavel extends ListActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(DadosResponsavel.this);
+            pDialog = new ProgressDialog(DadosCliente.this);
             pDialog.setMessage("Loading products. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
@@ -161,7 +163,7 @@ public class DadosResponsavel extends ListActivity {
                 if (success == 1) {
                     // products found
                     // Getting Array of Products
-                    responsavel = json.getJSONArray(TAG_RESPONSAVEL);
+                    responsavel = json.getJSONArray(TAG_CLIENTE);
 
                     // looping through All Products
                     for (int i = 0; i < responsavel.length(); i++) {
@@ -214,8 +216,8 @@ public class DadosResponsavel extends ListActivity {
                      * Updating parsed JSON data into ListView
                      * */
                     ListAdapter adapter = new SimpleAdapter(
-                            DadosResponsavel.this, productsList,
-                            R.layout.list_item_resp, new String[] { TAG_PID,
+                            DadosCliente.this, productsList,
+                            R.layout.list_item_cliente, new String[] { TAG_PID,
                             TAG_NAME,TAG_EMAIL,TAG_MOBILE},
                             new int[] { R.id.pid, R.id.name,R.id.email,R.id.mobile});
                     // updating listview
