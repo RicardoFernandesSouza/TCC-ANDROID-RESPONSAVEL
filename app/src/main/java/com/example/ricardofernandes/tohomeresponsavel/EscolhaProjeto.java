@@ -36,8 +36,8 @@ public class EscolhaProjeto extends ListActivity {
     private ProgressDialog pDialog;
     JSONParser jParser = new JSONParser();
     ArrayList<HashMap<String, String>> productsList;
-   // private static String url_products_details = "http://172.16.128.186//android_connect/get_residencias.php";
-    private static String url_products_details = "http://192.168.0.49//android_connect/get_residencias_resp.php";
+    private static String url_products_details = "http://172.16.128.186//android_connect/get_residencias_resp.php";
+   // private static String url_products_details = "http://192.168.0.49//android_connect/get_residencias_resp.php";
 
 
     // JSON Node names

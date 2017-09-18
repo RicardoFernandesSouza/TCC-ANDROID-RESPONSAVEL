@@ -44,10 +44,10 @@ public class EtapasCliente extends ListActivity {
 
     ArrayList<HashMap<String, String>> productsList;
 
-//    private static String url_get_etapas = "http://172.16.128.186//android_connect/get_etapas.php";
-//    private static String url_update_etapa = "http://172.16.128.186//android_connect/update_etapa.php";
-    private static String url_get_etapas = "http://192.168.0.14//android_connect/get_etapas.php";
-    private static String url_update_etapa = "http://192.168.0.14//android_connect/update_etapa.php";
+    private static String url_get_etapas = "http://172.16.128.186//android_connect/get_etapas_concluidas_cliente.php";
+    private static String url_update_etapa = "http://172.16.128.186//android_connect/update_etapa.php";
+//    private static String url_get_etapas = "http://192.168.0.14//android_connect/get_etapas.php";
+  //  private static String url_update_etapa = "http://192.168.0.14//android_connect/update_etapa.php";
 
     private static final String TAG_ETAPA = "tbl_name";
     private static final String TAG_PID = "id";
@@ -95,7 +95,7 @@ public class EtapasCliente extends ListActivity {
                 // Starting new intent
 //                Intent in = new Intent(getApplicationContext(),
 //                        MainActivity.class);
-                showAlert();
+              //  showAlert();
                 // sending pid to next activity
                 //db.deleteEtapas();
 

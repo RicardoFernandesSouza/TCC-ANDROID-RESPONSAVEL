@@ -42,8 +42,8 @@ public class DadosResidencia extends ListActivity {
     ArrayList<HashMap<String, String>> productsList;
 
     // url to get all products list
-  //  private static String url_all_products = "http://172.16.128.186//android_connect/get_residencia_dados.php";
-    private static String url_all_products = "http://192.168.0.49//android_connect/get_residencia_dados.php";
+    private static String url_all_products = "http://172.16.128.186//android_connect/get_residencia_dados.php";
+  //  private static String url_all_products = "http://192.168.0.49//android_connect/get_residencia_dados.php";
 
 
     // JSON Node names

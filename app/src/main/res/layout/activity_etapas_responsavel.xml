@@ -11,35 +11,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ricardofernandes.tohomeresponsavel.EtapasResponsavel">
 
-    <ExpandableListView
-        android:id="@+id/simpleExpandableListView"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:divider="#706e6e"
-        android:childDivider="#a9afa9"
-        android:dividerHeight="1dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingBottom="60dp" />
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="371dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:text="Salvar"
-            android:layout_height="50dp"
-            android:id="@+id/button5"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:background="@mipmap/logo_v_2_0"
-            android:elevation="17dp"
-            android:backgroundTint="@color/AppBrown"
-            android:layout_width="80dp"
-            android:textColor="@android:color/background_light"
-            android:textStyle="normal|bold" />
     </RelativeLayout>
 
 

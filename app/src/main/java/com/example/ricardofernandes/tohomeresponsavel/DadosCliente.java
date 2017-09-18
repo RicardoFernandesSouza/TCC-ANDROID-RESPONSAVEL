@@ -43,8 +43,8 @@ public class DadosCliente extends ListActivity {
 
     // url to get all products list
     //private static String url_all_products = "http://172.16.128.186/android_connect/get_all_products.php";
-    //private static String url_all_products = "http://172.16.128.186//android_connect/get_cliente.php";
-     private static String url_all_products = "http://192.168.0.49//android_connect/get_cliente.php";
+    private static String url_all_products = "http://172.16.128.186//android_connect/get_cliente.php";
+    // private static String url_all_products = "http://192.168.0.49//android_connect/get_cliente.php";
 
 
 
