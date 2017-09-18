@@ -263,7 +263,7 @@ public class EtapasResponsavel extends ListActivity {
 
                 if (success == 1) {
                     // successfully created product
-                    Intent i = new Intent(getApplicationContext(), EtapasCliente.class);
+                    Intent i = new Intent(getApplicationContext(), EtapasResponsavel.class);
                     startActivity(i);
 
                     // closing this screen
