@@ -294,7 +294,6 @@ public class EtapasResponsavel extends ListActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         new UpdateEtapa().execute();
-                        //  db.deleteEtapas();
                     }
                 })
                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
