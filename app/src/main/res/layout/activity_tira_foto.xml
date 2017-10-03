@@ -10,23 +10,19 @@
               tools:context="com.example.ricardofernandes.tohomeresponsavel.TiraFoto"
               android:background="@color/AppBrown">
 
-    <RelativeLayout
+    <Button
+        android:id="@+id/btnTakePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClick"
+        android:text="Take a Photo" />
+
+    <ImageView
+        android:id="@+id/ivPreview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/AppBrown">
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="158dp"
-            android:text="Button" />
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true" />
 
 </LinearLayout>
